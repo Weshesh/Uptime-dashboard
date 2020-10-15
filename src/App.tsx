@@ -1,7 +1,10 @@
 import React from 'react';
 import { ProjectAvailabilityBar } from './ProjectAvailabilityBar';
+import generateDataset from './datasetGenerator';
 
 function App() {
+  generateDataset();
+
   return (
     <div className="App bg-gray-100 flex content-center p-20 w-screen h-screen">
       <div className="container mx-auto bg-white border border-gray-200 rounded-xl h-auto shadow-2xl">

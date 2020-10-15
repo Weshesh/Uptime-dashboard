@@ -1,7 +1,6 @@
 import React from 'react';
 
 export function ProjectAvailabilityBar(props: { projectName: string }) {
-
   return (
     <div className="w-full border-b px-6 py-8">
       <div className="flex justify-between">
