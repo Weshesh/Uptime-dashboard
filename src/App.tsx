@@ -13,6 +13,7 @@ function App() {
         <ProjectAvailabilityBar projectName="Project C"></ProjectAvailabilityBar>
         <ProjectAvailabilityBar projectName="Project D"></ProjectAvailabilityBar>
         <ProjectAvailabilityBar projectName="Project E"></ProjectAvailabilityBar>
+        {generateDataset()}
       </div>
     </div>
   );

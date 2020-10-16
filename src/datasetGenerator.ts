@@ -1,20 +1,12 @@
 interface minute {
-  time: Date ,
+  time: number,
   state: 'available' | 'unavailable'
 }
 
 function generateDataset() {
-
-  let generatedDataset: minute[] = []
-
-  for(let i = 0; i < 1440; i++) {
-    const N = (Math.random() % 2) ? 'available' : 'unavailable';
-    console.log(N);
-  }
-
-
-
-  return generatedDataset
+  const startDate = new Date()
+  let dataset: minute[] = []
+  return dataset
 }
 
 export default generateDataset;
