@@ -1,9 +1,10 @@
 import React from 'react';
 import { ProjectAvailabilityBar } from './ProjectAvailabilityBar';
-import generateDataset, { sampleScenario } from './datasetGenerator';
+import generateDataset, {  } from './datasetGenerator/datasetGenerator';
+import { sampleScenarioA } from './datasetGenerator/sampleEventTemplates';
 
 function App() {
-  generateDataset(sampleScenario);
+  generateDataset(sampleScenarioA);
 
   return (
     <div className="App bg-gray-100 flex content-center p-20 w-screen min-h-screen">

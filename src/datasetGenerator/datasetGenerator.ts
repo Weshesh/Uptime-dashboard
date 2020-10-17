@@ -1,41 +1,9 @@
+import { ScenarioEvent } from "./sampleEventTemplates";
+
 interface Minute {
   time: string,
   state?: 'available' | 'unavailable'
 }
-
-interface ScenarioEvent {
-  startMinute: number,
-  endMinute: number,
-  status: 'available' | 'partially-unavailable' | 'unavailable'
-}
-
-export const sampleScenario: ScenarioEvent[] = [
-  {
-    startMinute: 110,
-    endMinute: 250,
-    status: 'partially-unavailable'
-  },
-  {
-    startMinute: 250,
-    endMinute: 300,
-    status: 'unavailable'
-  },
-  {
-    startMinute: 300,
-    endMinute: 750,
-    status: 'partially-unavailable'
-  },
-  {
-    startMinute: 1100,
-    endMinute: 1110,
-    status: 'partially-unavailable'
-  },
-  {
-    startMinute: 1200,
-    endMinute: 1210,
-    status: 'unavailable'
-  },
-];
 
 function generateDTGDate() {
   const date = new Date();
