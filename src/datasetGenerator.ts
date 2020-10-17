@@ -1,9 +1,41 @@
-interface minute {
+interface Minute {
   time: string,
   state?: 'available' | 'unavailable'
 }
 
-// HH:mm:ss[Z]/DDMMMYY 1440min
+interface ScenarioEvent {
+  startMinute: number,
+  endMinute: number,
+  status: 'available' | 'partially-unavailable' | 'unavailable'
+}
+
+export const sampleScenario: ScenarioEvent[] = [
+  {
+    startMinute: 110,
+    endMinute: 250,
+    status: 'partially-unavailable'
+  },
+  {
+    startMinute: 250,
+    endMinute: 300,
+    status: 'unavailable'
+  },
+  {
+    startMinute: 300,
+    endMinute: 750,
+    status: 'partially-unavailable'
+  },
+  {
+    startMinute: 1100,
+    endMinute: 1110,
+    status: 'partially-unavailable'
+  },
+  {
+    startMinute: 1200,
+    endMinute: 1210,
+    status: 'unavailable'
+  },
+];
 
 function generateDTGDate() {
   const date = new Date();
@@ -17,10 +49,8 @@ function generateDTGDate() {
 
 function generateHour(currentHourValue: number): string {
   const inputHour = currentHourValue.toString();
-  let outputHour = '';
   if (inputHour.length < 2) {
-    outputHour = '0' + inputHour;
-    return outputHour
+    return '0' + inputHour
   }
   return inputHour
 }
@@ -29,19 +59,17 @@ function generateMinute(currentMinuteValue: number): string {
   const inputMinute = currentMinuteValue > 59
     ? (currentMinuteValue % 60).toString()
     : currentMinuteValue.toString();
-  let outputMinute = '';
   if (inputMinute.length < 2) {
-    outputMinute = '0' + inputMinute;
-    return outputMinute
+    return '0' + inputMinute
   }
   return inputMinute
 }
 
-function generateDataset() {
+function generateDataset(inputScenario: ScenarioEvent[]) {
 
   const dateSuffix = generateDTGDate();
 
-  let dataset: minute[] = []
+  let dataset: Minute[] = []
   let hour = 0;
 
   for (let minute = 0; minute < 1440; minute++) {
@@ -50,7 +78,7 @@ function generateDataset() {
     }
     let timePrefix =  generateHour(hour) + ':' + generateMinute(minute) + ':00'; 
     let time = timePrefix + dateSuffix
-    let obj: minute = {
+    let obj: Minute = {
       time: time
     }
     dataset.push(obj);
