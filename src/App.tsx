@@ -6,14 +6,13 @@ function App() {
   generateDataset();
 
   return (
-    <div className="App bg-gray-100 flex content-center p-20 w-screen min-h-screen">
+    <div className="App bg-gray-100 flex content-center p-20 w-screen min-h-screen" onClick={generateDataset()}>
       <div className="container mx-auto bg-white border border-gray-200 rounded-xl h-auto shadow-2xl">
         <ProjectAvailabilityBar projectName="Project A"></ProjectAvailabilityBar>
         <ProjectAvailabilityBar projectName="Project B"></ProjectAvailabilityBar>
         <ProjectAvailabilityBar projectName="Project C"></ProjectAvailabilityBar>
         <ProjectAvailabilityBar projectName="Project D"></ProjectAvailabilityBar>
         <ProjectAvailabilityBar projectName="Project E"></ProjectAvailabilityBar>
-        {generateDataset()}
       </div>
     </div>
   );
