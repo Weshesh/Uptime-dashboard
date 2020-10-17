@@ -2,7 +2,7 @@ import { ScenarioEvent } from "./sampleEventTemplates";
 
 interface Minute {
   time: string,
-  state?: 'available' | 'unavailable'
+  state: string
 }
 
 function generateDTGDate() {
@@ -33,6 +33,16 @@ function generateMinute(currentMinuteValue: number): string {
   return inputMinute
 }
 
+function getState(minute: number, inputScenario: ScenarioEvent[]): string {
+  let state = 'available'
+  inputScenario.forEach(element => {
+    if (element.startMinute < minute && element.endMinute) {
+      state = element.status
+    } 
+  });
+  return state
+}
+
 function generateDataset(inputScenario: ScenarioEvent[]) {
 
   const dateSuffix = generateDTGDate();
@@ -45,9 +55,9 @@ function generateDataset(inputScenario: ScenarioEvent[]) {
       hour++
     }
     let timePrefix =  generateHour(hour) + ':' + generateMinute(minute) + ':00'; 
-    let time = timePrefix + dateSuffix
     let obj: Minute = {
-      time: time
+      time: timePrefix + dateSuffix,
+      state: getState(minute, inputScenario)
     }
     dataset.push(obj);
   }
