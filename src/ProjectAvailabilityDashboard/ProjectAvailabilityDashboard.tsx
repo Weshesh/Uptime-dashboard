@@ -6,24 +6,23 @@ export function ProjectAvailabilityDashboard(props: { projectName: string, datas
 
   function splitDataset(startingMinute: number, endingMinute: number) {
     let splitDataset: Minute[] = [];
-    for (let i = startingMinute; i <= endingMinute; i++) {
+    for (let i = startingMinute; i < endingMinute; i++) {
       splitDataset.push(props.dataset.data[i])
     }
     return splitDataset
   }
 
-  function generateBars() {
+  function generateBarDataset() {
     let datasets: Minute[][] = []
     for (let i = 0; i < 48; i++) {
-      const start = i * 180;
-      const end = (1 + 1) * 180;
-      console.log(start, end);
+      const start = i * 30;
+      const end = (i + 1) * 30;
       datasets.push(splitDataset(start, end))
     }
     return datasets
   }
 
-  const datasets = generateBars();
+  const barDatasets = generateBarDataset();
 
   return (
     <div className='w-full border-b px-6 py-8'>
@@ -36,7 +35,7 @@ export function ProjectAvailabilityDashboard(props: { projectName: string, datas
         </span>
       </div>
       <div className='flex justify-between my-3 w-full'>
-        {datasets.map((e) => (
+        {barDatasets.map((e) => (
       <Bar data={e} />
     ))}
       </div>
