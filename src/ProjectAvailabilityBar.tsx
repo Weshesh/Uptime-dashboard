@@ -1,6 +1,7 @@
 import React from 'react';
+import { Dataset } from './datasetGenerator/datasetGenerator';
 
-export function ProjectAvailabilityBar(props: { projectName: string }) {
+export function ProjectAvailabilityBar(props: { projectName: string, dataset: Dataset }) {
   return (
     <div className="w-full border-b px-6 py-8">
       <div className="flex justify-between">
@@ -34,7 +35,7 @@ export function ProjectAvailabilityBar(props: { projectName: string }) {
         </div>
         <div className="flex justify-end text-gray-300 font-medium">Today</div>
 
-        <div className="absolute px-5 text-gray-500 font-medium bg-white">99.99% Availability</div>
+        <div className="absolute px-5 text-gray-500 font-medium bg-white">{props.dataset.availability} Availability</div>
       </div>
 
     </div>

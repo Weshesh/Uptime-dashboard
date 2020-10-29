@@ -5,7 +5,7 @@ interface Minute {
   time: DateTimeGroup,
   state: string,
 }
-interface Dataset {
+export interface Dataset {
   availability: string,
   data: Minute[]
 }
@@ -24,7 +24,7 @@ function getState(minute: number, inputScenario: ScenarioEvent[]): string {
   return state
 }
 
-function generateDataset(inputScenario: ScenarioEvent[]) {
+export function generateDataset(inputScenario: ScenarioEvent[]) {
   let dataset: Dataset = {availability: '0', data: [] };
   let availability = 0;
   for (let currentMinute = 0; currentMinute < 1440; currentMinute++) {
@@ -43,5 +43,3 @@ function generateDataset(inputScenario: ScenarioEvent[]) {
   console.log(dataset);
   return dataset
 }
-
-export default generateDataset;
