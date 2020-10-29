@@ -26,15 +26,20 @@ export function ProjectAvailabilityDashboard(props: { projectName: string, datas
   const barDatasets = generateBarDataset();
 
   function checkCurrentState() {
-    console.log(barDatasets);
     const lastBar = barDatasets[barDatasets.length - 1];
-    console.log(lastBar);
-    const lastMinute = lastBar[lastBar.length - 1].state;
-    console.log(lastMinute);
-    return lastMinute.charAt(0).toUpperCase() + lastMinute.slice(1)
+    return lastBar[lastBar.length - 1].state;
   }
 
   const currentState = checkCurrentState();
+
+  function currentStateStyle() {
+    if (currentState === 'unavailable') {
+      return 'text-red-500'
+    } else if (currentState === 'partially-unavailable') {
+      return 'text-yellow-500'
+    }
+    return 'text-green-400'
+  }
 
   return (
     <div className='w-full border-b px-6 py-8'>
@@ -42,13 +47,13 @@ export function ProjectAvailabilityDashboard(props: { projectName: string, datas
         <h2 className='text-gray-600 font-medium'>
           {props.projectName}
         </h2>
-        <span className='text-green-200 font-medium'>
-          {currentState}
+        <span className={`font-medium ${currentStateStyle()}`}>
+          {currentState.charAt(0).toUpperCase() + currentState.slice(1)}
         </span>
       </div>
       <div className='flex justify-between my-3 w-full'>
         {barDatasets.map((e, index) => (
-          <Bar key={e[e.length-1].time.toString() + index} data={e} />
+          <Bar key={e[e.length - 1].time.toString() + index} data={e} />
         ))}
       </div>
 

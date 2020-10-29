@@ -83,8 +83,8 @@ export const sampleScenarioC: ScenarioEvent[] = [
   },
   {
     startMinute: 1200,
-    endMinute: 1210,
-    status: 'unavailable'
+    endMinute: 1440,
+    status: 'partially-unavailable'
   }
 ]
 
@@ -96,7 +96,7 @@ export const sampleScenarioD: ScenarioEvent[] = [
   },
   {
     startMinute: 1100,
-    endMinute: 1410,
+    endMinute: 1440,
     status: 'unavailable'
   },
 ]
