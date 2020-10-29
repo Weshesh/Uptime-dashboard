@@ -96,7 +96,7 @@ export const sampleScenarioD: ScenarioEvent[] = [
   },
   {
     startMinute: 1100,
-    endMinute: 1410,
+    endMinute: 1440,
     status: 'unavailable'
   },
 ]

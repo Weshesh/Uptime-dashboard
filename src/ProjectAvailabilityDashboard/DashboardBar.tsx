@@ -3,7 +3,6 @@ import { Minute } from '../datasetGenerator/datasetGenerator';
 
 export function Bar(props: { data: Minute[] }) {
   const dominantState = checkDominantState();
-  console.log(props.data);
 
   function checkDominantState(): string {
     let state = 'available';

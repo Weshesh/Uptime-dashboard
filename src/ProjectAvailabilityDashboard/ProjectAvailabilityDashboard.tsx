@@ -7,7 +7,7 @@ export function ProjectAvailabilityDashboard(props: { projectName: string, datas
   function splitDataset(startingMinute: number, endingMinute: number) {
     let splitDataset: Minute[] = [];
     for (let i = startingMinute; i < endingMinute; i++) {
-      splitDataset.push(props.dataset.data[i])
+      splitDataset.push(props.dataset.data[i]);
     }
     return splitDataset
   }
@@ -17,12 +17,24 @@ export function ProjectAvailabilityDashboard(props: { projectName: string, datas
     for (let i = 0; i < 48; i++) {
       const start = i * 30;
       const end = (i + 1) * 30;
-      datasets.push(splitDataset(start, end))
+      datasets.push(splitDataset(start, end));
     }
     return datasets
   }
 
+
   const barDatasets = generateBarDataset();
+
+  function checkCurrentState() {
+    console.log(barDatasets);
+    const lastBar = barDatasets[barDatasets.length - 1];
+    console.log(lastBar);
+    const lastMinute = lastBar[lastBar.length - 1].state;
+    console.log(lastMinute);
+    return lastMinute.charAt(0).toUpperCase() + lastMinute.slice(1)
+  }
+
+  const currentState = checkCurrentState();
 
   return (
     <div className='w-full border-b px-6 py-8'>
@@ -31,13 +43,13 @@ export function ProjectAvailabilityDashboard(props: { projectName: string, datas
           {props.projectName}
         </h2>
         <span className='text-green-200 font-medium'>
-          Available
+          {currentState}
         </span>
       </div>
       <div className='flex justify-between my-3 w-full'>
-        {barDatasets.map((e) => (
-      <Bar data={e} />
-    ))}
+        {barDatasets.map((e, index) => (
+          <Bar key={e[e.length-1].time.toString() + index} data={e} />
+        ))}
       </div>
 
       <div className='relative flex justify-center'>
