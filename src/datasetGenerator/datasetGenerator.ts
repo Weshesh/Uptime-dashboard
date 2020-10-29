@@ -1,7 +1,7 @@
 import { ScenarioEvent } from "./sampleEventTemplates";
 import DateTimeGroup from './DateTimeGroup';
 
-interface Minute {
+export interface Minute {
   time: DateTimeGroup,
   state: string,
 }

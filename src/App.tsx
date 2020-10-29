@@ -1,5 +1,5 @@
 import React from 'react';
-import { ProjectAvailabilityBar } from './ProjectAvailabilityBar';
+import { ProjectAvailabilityDashboard } from './ProjectAvailabilityDashboard/ProjectAvailabilityDashboard';
 import { generateDataset } from './datasetGenerator/datasetGenerator';
 import { sampleScenarioA, sampleScenarioB, sampleScenarioC, sampleScenarioD } from './datasetGenerator/sampleEventTemplates';
 
@@ -10,10 +10,10 @@ function App() {
           Uptime over the past 24 hours.
         </div>
       <div className="container mx-auto bg-white border border-gray-200 rounded-xl h-auto shadow-2xl">
-        <ProjectAvailabilityBar projectName="Project A" dataset={generateDataset(sampleScenarioA)}></ProjectAvailabilityBar>
-        <ProjectAvailabilityBar projectName="Project B" dataset={generateDataset(sampleScenarioB)}></ProjectAvailabilityBar>
-        <ProjectAvailabilityBar projectName="Project C" dataset={generateDataset(sampleScenarioC)}></ProjectAvailabilityBar>
-        <ProjectAvailabilityBar projectName="Project D" dataset={generateDataset(sampleScenarioD)}></ProjectAvailabilityBar>
+        <ProjectAvailabilityDashboard projectName="Project A" dataset={generateDataset(sampleScenarioA)} />
+        <ProjectAvailabilityDashboard projectName="Project B" dataset={generateDataset(sampleScenarioB)} />
+        <ProjectAvailabilityDashboard projectName="Project C" dataset={generateDataset(sampleScenarioC)} />
+        <ProjectAvailabilityDashboard projectName="Project D" dataset={generateDataset(sampleScenarioD)} />
       </div>
     </div>
   );
