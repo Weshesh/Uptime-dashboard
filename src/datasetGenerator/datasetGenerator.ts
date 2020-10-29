@@ -3,7 +3,11 @@ import DateTimeGroup from './DateTimeGroup';
 
 interface Minute {
   time: DateTimeGroup,
-  state: string
+  state: string,
+}
+interface Dataset {
+  availability: string,
+  data: Minute[]
 }
 
 function getState(minute: number, inputScenario: ScenarioEvent[]): string {
@@ -17,15 +21,20 @@ function getState(minute: number, inputScenario: ScenarioEvent[]): string {
 }
 
 function generateDataset(inputScenario: ScenarioEvent[]) {
-  let dataset: Minute[] = []
-
+  let dataset: Dataset = {availability: '0', data: [] };
+  let availability = 0;
   for (let currentMinute = 0; currentMinute < 1440; currentMinute++) {
     const obj: Minute = {
       time: new DateTimeGroup(currentMinute),
       state: getState(currentMinute, inputScenario)
     }
-    dataset.push(obj);
+    if (obj.state === 'available') {
+      availability += 1;
+    }
+    dataset.data.push(obj);
   }
+  const availabilityPercentage = (1440 / availability).toFixed(2);
+  dataset.availability = `${availabilityPercentage}%`;
   console.log(dataset);
   return dataset
 }
