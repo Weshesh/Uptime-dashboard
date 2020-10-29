@@ -31,7 +31,7 @@ export const sampleScenarioA: ScenarioEvent[] = [
     status: 'unavailable'
   }
 ]
-  
+
 export const sampleScenarioB: ScenarioEvent[] =[
   {
     startMinute: 110,

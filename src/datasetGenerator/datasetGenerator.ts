@@ -11,12 +11,16 @@ interface Dataset {
 }
 
 function getState(minute: number, inputScenario: ScenarioEvent[]): string {
-  let state = 'available'
-  inputScenario.forEach(element => {
-    if (element.startMinute < minute && element.endMinute) {
-      state = element.status
+  let state = 'available';
+  for(let i = 0; i < inputScenario.length; i++) {
+    if (minute >= inputScenario[i].startMinute && minute <= inputScenario[i].endMinute) {
+      state = inputScenario[i].status
+      break
     }
-  });
+    else {
+      state = 'available';
+    }
+  };
   return state
 }
 
@@ -33,8 +37,9 @@ function generateDataset(inputScenario: ScenarioEvent[]) {
     }
     dataset.data.push(obj);
   }
-  const availabilityPercentage = (1440 / availability).toFixed(2);
+  const availabilityPercentage = (availability / 1440 * 100).toFixed(2);
   dataset.availability = `${availabilityPercentage}%`;
+  console.log(availability);
   console.log(dataset);
   return dataset
 }
