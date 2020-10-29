@@ -9,9 +9,12 @@ export function Bar(props: { data: Minute[] }) {
     for (let i = 0; i < props.data.length; i++) {
       if (props.data[i].state === 'unavailable') {
         state = 'unavailable';
-        break;
       } else if (props.data[i].state === 'partially-unavailable') {
         state = 'partially-unavailable'
+        break;
+      } else if (state !== 'available' && props.data[i].state === 'available' ) {
+        state = 'partially-unavailable'
+        break;
       }
     }
     return state
