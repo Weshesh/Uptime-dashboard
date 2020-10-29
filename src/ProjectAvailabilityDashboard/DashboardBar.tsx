@@ -32,7 +32,7 @@ export function Bar(props: { data: Minute[] }) {
   }
 
   return (
-    <Tooltip placement='top' trigger='click' tooltip='Hi there!' hideArrow={false}>
+    <Tooltip placement='top' trigger='click' tooltip='Hi there!' hideArrow={false} data={props.data}>
       <div className={`w-3 h-12 rounded-sm shadow ${setBarColor(dominantState)}`} />
     </Tooltip>
   )
