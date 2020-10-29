@@ -1,4 +1,6 @@
 import React from 'react';
+import Tooltip from '../common-components/Tooltip';
+
 import { Minute } from '../datasetGenerator/datasetGenerator';
 
 export function Bar(props: { data: Minute[] }) {
@@ -30,6 +32,8 @@ export function Bar(props: { data: Minute[] }) {
   }
 
   return (
-    <div className={`w-3 h-12 rounded-sm shadow ${setBarColor(dominantState)}`} />
+    <Tooltip placement='top' trigger='click' tooltip='Hi there!' hideArrow={false}>
+      <div className={`w-3 h-12 rounded-sm shadow ${setBarColor(dominantState)}`} />
+    </Tooltip>
   )
 }
