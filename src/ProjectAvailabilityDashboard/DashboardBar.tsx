@@ -9,14 +9,20 @@ export function Bar(props: { data: Minute[] }) {
   function checkDominantState(): string {
     let state = 'available';
     for (let i = 0; i < props.data.length; i++) {
-      if (props.data[i].state === 'unavailable') {
+      const n = (i > 0) ? (i - 1) : 0;
+      if (props.data[i].state === 'unavailable' && props.data[n].state === 'available' && props.data[n].state !== 'unavailable' && i !== 0) {
+        state = 'partially-unavailable';
+        break
+      } 
+      else if (props.data[i].state === 'unavailable') {
         state = 'unavailable';
-      } else if (props.data[i].state === 'partially-unavailable') {
+      } 
+      else if (props.data[i].state === 'partially-unavailable') {
         state = 'partially-unavailable'
-        break;
+        break
       } else if (state !== 'available' && props.data[i].state === 'available' ) {
         state = 'partially-unavailable'
-        break;
+        break
       }
     }
     return state

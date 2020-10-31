@@ -37,6 +37,7 @@ export function generateDataset(inputScenario: ScenarioEvent[]) {
     }
     dataset.data.push(obj);
   }
+  console.log(availability)
   const availabilityPercentage = (availability / 1440 * 100).toFixed(2);
   dataset.availability = `${availabilityPercentage}%`;
   return dataset
